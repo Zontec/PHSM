@@ -1,0 +1,14 @@
+ifeq ($(ARCH), NATIVE)
+    PLATFORM_DIR := $(ARCH_DIR)/native
+    
+endif
+
+ifeq ($(ARCH), STM32F4)
+    PLATFORM_DIR := $(ARCH_DIR)/stm32f4
+endif
+
+INCLUDES += $(ARCH)
+INCLUDES += $(HW_DIR)
+
+include $(PLATFORM_DIR)/Makefile.include
+include $(PLATFORM_DIR)/Makefile.tools

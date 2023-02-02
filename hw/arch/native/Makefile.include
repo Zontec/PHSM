@@ -1,0 +1,10 @@
+SRCS += native/communication_driver.c
+SRCS += native/base_init.c
+SRCS += native/entropy.c
+SRCS += native/vendor.c
+SRCS += native/secrets.c
+SRCS += native/fw_update.c
+SRCS += native/hw_config_next.c
+
+DEFINES += ARCH=NATIVE
+INCLUDES += $(PLATFORM_DIR)

@@ -1,0 +1,57 @@
+
+CORE_DIR = core
+HW_DIR = hw
+CRYPTOLIB_DIR = cryptolib
+BUILD_DIR = build
+ARCH_DIR = $(HW_DIR)/arch
+
+INCLUDES = .
+
+#=========== VPATH ===========#
+VPATH += $(CORE_DIR)/
+VPATH += $(HW_DIR)/
+VPATH += $(CRYPTOLIB_DIR)/
+VPATH += $(ARCH_DIR)/
+
+#=========== ARCH DEPENDENT TOOLS ===========#
+
+include $(HW_DIR)/Makefile.include
+include $(CORE_DIR)/Makefile.include
+include $(CRYPTOLIB_DIR)/Makefile.include
+
+#=========== OBJECTS ===========#
+OBJS = $(addprefix $(BUILD_DIR)/, $(SRCS:.c=.o))
+
+test: $(OBJS)
+	@$(LD) $(LDFLAGS) $^ -o ./build/$(PROJECT).out $(LDLIBS)
+	@echo "Compilation done!"
+
+firmware: $(OBJS)
+	@$(LD) $(LDFLAGS) $^ -o $(PROJECT).hex $(LDLIBS)
+	@echo "Compilation done!"
+
+validation: $(OBJS)
+	@echo "Compilation done!"
+
+library: $(OBJS)
+	@echo "Compilation done!"
+
+
+$(PROJECT)_tests: $(OBJS)
+	@$(CC) $(LDFLAGS) $^ -o $@ $(LDLIBS)
+	@echo "Compilation done!"
+
+$(BUILD_DIR)/%.o : %.c
+	@mkdir -p $(dir $@)
+	@$(CC) $(CFLAGS) $(addprefix -D, $(DEFINES)) $(addprefix -I, $(INCLUDES)) -c $< -o $@
+	@echo CC -c $< -o $@
+
+$(BUILD_DIR)/%.o : %.cpp
+	@mkdir -p $(dir $@)
+	@$(CPP) $(CFLAGS) $(addprefix -D, $(DEFINES)) $(addprefix -I, $(INCLUDES)) -c $< -o $@
+	@echo CC -c $< -o $@
+
+$(BUILD_DIR)/%.o : %.s
+	@mkdir -p $(dir $@)
+	@$(AS) $(CFLAGS) $(addprefix -D, $(DEFINES)) $(addprefix -I, $(INCLUDES)) -c $< -o $@
+	@echo CC -c $< -o $@

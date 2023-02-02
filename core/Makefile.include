@@ -1,0 +1,5 @@
+
+
+SRCS += core.c
+SRCS += rom.c
+SRCS += bootloader.c

@@ -1,0 +1,10 @@
+version: '3'
+
+services:
+  phsm_tests:
+    # will build ./docker/web/Dockerfile
+    build: 
+      dockerfile: ./dockers/tests/Dockerfile
+      context: /home/zontec/Development/WS2022/PC2/project/
+    ports:
+     - "3334:3334"

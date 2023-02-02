@@ -1,0 +1,14 @@
+CC := arm-none-eabi-gcc
+CPP := arm-none-eabi-g++
+AS := arm-none-eabi-as
+LD := arm-none-eabi-gcc
+
+ifneq ($(WARNINGS), y)
+    CFLAGS += -w
+    LDFLAGS += -w
+endif
+
+ifneq ($(COMPILE_MODE), DEBUG)
+    CFLAGS += -g
+    LDFLAGS += -g
+endif

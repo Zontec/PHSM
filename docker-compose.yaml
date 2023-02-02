@@ -1,0 +1,13 @@
+version: '3'
+
+services:
+  phsm:
+    # will build ./docker/web/Dockerfile
+    build: 
+      dockerfile: ./dockers/native_run/Dockerfile
+      context: /home/zontec/Development/WS2022/PC2/project/
+    ports:
+      - target: 8888
+        published: 8888
+        protocol: udp
+        mode: host

@@ -1,0 +1,12 @@
+*.vscode
+build
+*.hex
+*.out
+*.bin
+*.fw
+*.o
+*.a
+*.so
+out
+__pycache__
+docs/doxy

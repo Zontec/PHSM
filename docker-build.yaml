@@ -1,0 +1,12 @@
+version: '3'
+
+services:
+  phsm_build:
+    # will build ./docker/web/Dockerfile
+    build: 
+      dockerfile: ./dockers/build/Dockerfile
+      context: /home/zontec/Development/WS2022/PC2/project/
+    volumes:
+      - './build:/hsm/build'
+      - './phsm:/hsm/phsm.out'
+    
