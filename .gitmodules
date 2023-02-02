@@ -1,0 +1,3 @@
+[submodule "mbedCrypto"]
+	path = cryptolib
+	url = https://github.com/Zontec/mbedCrypto.git
